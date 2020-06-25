@@ -12,30 +12,30 @@ class CustomersRepository implements ICustomersRepository {
   }
 
   public async create({ name, email }: ICreateCustomerDTO): Promise<Customer> {
-    const customer = this.ormRepository.create({
+    const customerCreate = this.ormRepository.create({
       name,
       email,
     });
 
-    await this.ormRepository.save(customer);
+    await this.ormRepository.save(customerCreate);
 
-    return customer;
+    return customerCreate;
   }
 
   public async findById(id: string): Promise<Customer | undefined> {
-    const findCustomer = await this.ormRepository.findOne(id);
+    const customerId = await this.ormRepository.findOne(id);
 
-    return findCustomer;
+    return customerId;
   }
 
   public async findByEmail(email: string): Promise<Customer | undefined> {
-    const findCustomer = await this.ormRepository.findOne({
+    const customerEmail = await this.ormRepository.findOne({
       where: {
         email,
       },
     });
 
-    return findCustomer;
+    return customerEmail;
   }
 }
 
